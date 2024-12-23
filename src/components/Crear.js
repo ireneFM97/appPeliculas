@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { GuardarEnStorage } from '../helpers/GuardarEnStorage';
-export const Crear = () => {
+
+export const Crear = ({ setListadoState }) => {
 
     const titulo = "Añadir pelicula";
     const [pelicula, setPelicula] = useState({
-        titulo : "",
+        titulo: "",
         descripcion: ""
     });
 
@@ -23,6 +24,12 @@ export const Crear = () => {
         // Guardar estado
         setPelicula(pelicula);
 
+        //Actualiar el estado
+
+        setListadoState(elementos => {
+            return [...elementos, pelicula];
+        })
+
         // Guardar en el almacenamiento local
         GuardarEnStorage("peli", pelicula);
     }
@@ -35,12 +42,12 @@ export const Crear = () => {
             {pelicula.titulo}
 
             <form onSubmit={conseguirDatosForm}>
-                <input type="text" 
-                        placeholder="Titulo" 
-                        name='titulo'
-                        id='titulo'
+                <input type="text"
+                    placeholder="Titulo"
+                    name='titulo'
+                    id='titulo'
                 />
-                <textarea 
+                <textarea
                     placeholder="Descripcion"
                     name='descripcion'
                     id='descripcion'></textarea>
