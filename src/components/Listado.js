@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-//Hola
+
 export const Listado = () => {
 
     const [listadoState, setListadoState] = useState([]);
@@ -17,17 +17,20 @@ export const Listado = () => {
 
     return (
         <>
-            {listadoState.map(peli => {
-                return (
-                    <article className="peli-item">
-                        <h3 className="title">Desarrollo Web</h3>
-                        <p className="description">Master web</p>
+            {listadoState != null ?
+                listadoState.map(peli => {
+                    return (
+                        <article key={peli.id} className="peli-item">
+                            <h3 className="title">Desarrollo Web</h3>
+                            <p className="description">Master web</p>
 
-                        <button className="edit">Editar</button>
-                        <button className="delete">Borrar</button>
-                    </article>
-                );
-            })}
+                            <button className="edit">Editar</button>
+                            <button className="delete">Borrar</button>
+                        </article>
+                    );
+                })
+                : <h2>No hay pelicula para mostrar</h2>
+            }
 
         </>
     )
